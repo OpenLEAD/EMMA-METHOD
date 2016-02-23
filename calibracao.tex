@@ -3,19 +3,21 @@
 
 \subsection{Calibração da pá}
 
-A dinâmica do processo de calibração não exige que o algoritmo seja capaz de
-identificar qual pá está sendo calibrada, uma vez que a pá que deve ter sua
-posição determinada, pode ter seu respectivo modelo informado \textit{a priori}.
-Essa característica possibilita descartar a necessidade de comparação e busca de
-diversos modelos, reduzindo assim a complexidade computacional. Portanto, é
-possível armazenar uma representação de diferentes pás e fornecer, 
-como entrada do sistema, o modelo correto de acordo com o tipo de turbina que
-está sendo inspecionada.
+O formato original da pá do rotor é fixo para cara cada turbina, ou seja, uma
+vez que definida em qual turbina será realizada a manutenção, é possível
+fornecer \textit{a priori} qual tipo de pá será metalizada e suas
+características. Essa característica possibilita descartar a necessidade de comparação e busca de
+diversos modelos, reduzindo assim a complexidade computacional final do
+algoritmo. Portanto, é possível armazenar uma representação de diferentes pás e
+fornecer, como entrada do sistema, o modelo correto de acordo com o tipo de turbina que
+está sendo inspecionada. O processo final consiste, então, no correto
+posicionamento e alinhamento entre o modelo armazenado e a instância real do
+objeto, ou mais especificamente a pá.
 
 Os desenhos técnicos das pás, não fornecem informações suficientes
 sobre o seu perfil hidráulico e, para fins práticos, os modelos serão adquiridos
 a partir da inspeção \textit{in situ} de uma turbina em condições de conservação
-que não apresente danos e esse procedimento necessita ser realizado apenas uma
+que não apresente danos. Esse procedimento necessita ser realizado apenas uma
 vez para cada modelo. Como especificado em \cite{EMMA DETAIL}, %TODO citar emma
 % detail.
 o sensor a ser adquirido pelo projeto é o Faro Focus X330. Esse dispositivo
@@ -40,73 +42,42 @@ O método proposto por \cite{Tombari2010a}, se baseia na identificação de
 \textit{features} ou características tridimensionais locais para pontos de
 interesse e identificar um conjunto de correspondências entre o modelo 3D e o a
 cena analisada, no caso da aplicação do projeto EMMA as corresponências entre a
-o modelo da pá e a turbina.
+o modelo da pá e a turbina. Uma \textit{feature} descreve as caracteristicas da
+vizinhança de um ponto, fornecendo assim informações locais para cada ponto. 
 
-Essa estratégia se baseia na detecção de \textit{features} e descritores locais
-para calcular um conjunto de correspondências entre o modelo 3D e a cena a ser
-inspecionada. Para a identificação das características, é necessário que
-pontos de interesse sejam amostrados tanto do modelo quanto da cena e para cada
-ponto é associado um descritor que define as características locais de sua
-vizinhaça. Dado os conjuntos de descritores do modelo e da cena a ser analisada,
-deve-se então determinar as correspondências entre as correspondências entre os
-dois conjuntos, utilizando-se, por exemplo, a distância euclidiana entre os seus
-descritores como medida limite. Uma vez que o conjunto de correspondências é
-identificado, é realizada uma votação para se identificar se essa característica específica se
-encontra ou não na cena. Um acumulador é responsável por contabilizar os votos e
-um objeto é detectado caso haja um número suficiente de votos para a sua
-presença de em uma determinada posição do espaço. É importante ressaltar que
-devido à presença de ruído, aŕeas com muita densidade de objetos ou objetos
-parcialmente oclusos, é possível a detecção de falsos positivos, que devem ser
-posteriormente tratados.
+Para reduzir os cálculos necessários, é possível realizar uma amostragem na
+nuvem de pontos e computar os descritores de cada caracteŕistica apenas para
+pontos de interesse, tanto no modelo quanto na cena. Uma vez que ambos os
+conjuntos de descritores foi calculado, deve-se então determinar as
+correspondências entre os dois conjuntos. Pode-se utilizar, por exemplo, a
+distância euclidiana entre os seus descritores correspondentes como medida
+limite. Cada correspondência é uma evidência que o modelo se encontra na cena e
+um acumulador é responsável por contabilizar os votos e um objeto é detectado
+caso haja um número suficiente de votos. É importante ressaltar mesmo sendo
+robusta a oclusões e ambientes com muita densidade de objetos, devido à presença de
+ruído, e a particularidades de cada aplicação, como densidade e resolução das
+nuvem de pontos forncecidas pelo sensor e pelo modelo, é possível a detecção de
+falsos positivos, ou mesmo a incapacidade de se detectar corretamente o objeto
+em questão. Para se tratar esse problema é necessário o correto ajuste de
+diversos parâmetros e também a implementação de uma forma eficiente de avaliação
+das hipóteses encontradas pelo algoritmo. 
 
-\subsection{Parâmetros de ajuste}
-
-A técnica de \textit{Correspondence Grouping} tem uma série de parâmetros de
-ajuste, como: 
-
-\begin{itemize}
-  \item \textit{Model/Scene uniform sampling radius} - O processo de
-  \textit{uniform sampling} subamostra e uniformiza a nuvem de pontos da cena
-  analisada e, também, do modelo de comparação em um número reduzido de pontos
-  chave.
-  Essa etapa é realizada sobrepondo uma grade 3D de voxels sobre a nuvem de
-  pontos e calculando o centróide de cada voxel.  O raio (\textit{uniform
-  sampling radius}) ou tamanho da folha dessa grade dita, então, quanto a
-  resolução da nuvem de pontos será reduzida.
-  \item \textit{Reference frame radius} - Para se obter descritores invariantes
-  a pose dos objetos analisados, é implementada a utilização de um sistema de
-  coordenada local associado a cada ponto chave da nuvem de pontos. Essa é etapa
-  é regulada pela distância máxima dos pontos utlizados para se estimar os
-  eixos $x$ e $y$ do sistema de coordenada local de cada ponto
-  (\textit{Reference frame radius}).
-  \item \textit{Descriptor radius} - Raio da esfera usada para determinar a
-  vizinhaça de cada ponto utilizada na estimação de \textit{features}.
-  \item \textit{Cluster size} - Define o tamanho da célula no espaço de
-  Hough, utilizado para votação. %TODO VERIFICAR TRADUÇÂO
-  \item \textit{Clustering threshold} - Define o número mínimo de votos
-  necessário para indicara presença de uma instância do modelo na nuvem de
-  pontos da cena de entrada. \end{itemize}
-
-Esses parâmetros devem ser ajustados para cada tipo de aplicação em que se
-deseja reconhecer objetos e também é dependente das características presentes em
-cada modelo, como sua resolução e densidade por exemplo. Devido a essa
-caracterísitica, é importante que seja possível replicar as características que
-serão encontradas no cenário real de utilização do algoritmo de calibração. 
 
 \section{Simulação de nuvem de Pontos}
 
-A utilização de dados sintéticos para a implementação e ajuste de algoritmos é
-uma prática aplicada amplamente e possibilita o gradual aumento na complexidade
-dos dados introduzidos no algoritmo e descoberta e entendimento das nuances
-específicas do problema.
+Devido a grande complexidade logística e a necessidade de disponibilidade de
+acesso seco a uma turbina, é indispensável a possibilidade da sintetização de
+dados consistentes e que representem de maneira eficaz as caracteristícas que
+serão encontradas no cenário real de operação. 
 
 \subsection{Dados genéricos}
 
 Para um primeiro contato com o funcionamento do método \textit{Correspondence
-Grouping} foi utilizado dados genéricos disponíveis na literatura e foi
-introduzido artificialmente o modelo da pá gerado pelo sensor Faro Focus X330,
-durante a viagem de campo à Usina Hidrelética de Jirau para o teste de
-viabilidade técnica desse sensor. 
+Grouping} foram utilizados dados genéricos disponíveis na literatura
+\footnotemark \footnotetext{http://kos.informatik.uni-osnabrueck.de/3Dscans/}
+e um modelo da pá gerado pelo sensor Faro Focus X330 , durante a viagem de campo
+à Usina Hidrelética de Jirau para o teste de viabilidade técnica desse sensor, foi
+introduzido artificialmente na cena.
 
 A figura \ref{fig::modelo_pa_faro} ilustra o modelo da pá em nuvem de pontos,
 esse modelo é uma representação de $360^o$ da superfície da pá e foi aquisitado em
@@ -115,24 +86,26 @@ algoritmo de calibração.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.6\columnwidth]{figs/calibracao/modelo_pa_faro}
+	\includegraphics[width=0.9\columnwidth]{figs/calibracao/modelo_pa_faro}
 	\caption{Nuvem de pontos da pá aquisitada pelo sensor Faro Focus X330.}
     \label{fig::modelo_pa_faro}
 \end{figure}
 
 A identificação da objeto na cena e a estimação da sua posição foi testada em
 uma cena de um escritório, como pode ser visualizado na figura
-\ref{fig::pa_cena_gen}. Pode-se verificar que mesmo com uma diferença de
-densidade de pontos presente em cada parte da nuvem de pontos resultante (cena
-e modelo da pá), foi possível realizar a correta localização do modelo. O
-ajusteo dos paramêtros de subamostragem dos modelos e da cena necessitaram de
-maior atenção nesse cenário. Vale ressaltar que o algoritmo identificou
-corretamente uma cópia exata do modelo que foi introduzido na cena, não há
-presença de ruídos ou oclusôes.
+\ref{fig::pa_cena_gen}. O modelo foi sobreposto em vermelho e não houve uma
+discrepância visível entre a instância presente na cena e o modelo sobreposto. 
+Mesmo com uma diferença de densidade de pontos presente em cada parte da nuvem
+de pontos resultante (modelo é muito mais denso que a cena), foi possível
+realizar a correta localização do modelo. O ajuste dos paramêtros de
+subamostragem necessitaram de maior atenção nesse cenário. Vale ressaltar que o
+algoritmo identificou corretamente uma cópia exata do modelo que foi introduzido
+na cena, não há presença de ruídos ou oclusões no instância da pá presente na
+cena.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.6\columnwidth]{figs/calibracao/pa_cena_gen}
+	\includegraphics[width=0.9\columnwidth]{figs/calibracao/blade_office5}
 	\caption{Exemplo de localização do modelo da pá em uma cena genérica.}
     \label{fig::pa_cena_gen}
 \end{figure}
