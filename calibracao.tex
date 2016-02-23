@@ -112,22 +112,25 @@ cena.
 
 \subsection{Blensor}
 
-Uma alternativa para a criação de dados, nos quais existe a presença de oclusão,
-é a simulação do sensor utilizado e a projeção da sombra de um objeto que se
-encontra entre o sensor e o alvo original. Para a simulação desses cenários, foi
+A utilização de dados genéricos é útil para a implementação e testes do
+algoritmo, entretanto não representa as condições reais que serão encontradas
+durante o processo de metalização. A geometria da turbina, da pá, do manipulador
+e também as oclusões geradas pelos elementos presentes necessitam ser simulados
+para um perfeito ajuste do sistema. Para a simulação desses cenários, foi
 utilizado a \textit{toolbox Blensor}\footnotemark
 \footnotetext{http://www.blensor.org} baseada no \textit{software} de criação 3D
 \textit{Blender}\footnotemark \footnotetext{http://www.blender.org}, o qual
 permite a simulação da nuvem de pontos resultante de um sensor em um ambiente
 tridimensional. Os objetos inseridos na cena são sólidos 3D, que podem ser
 desenhados utilizando-se as ferramentas do próprio programa ou importados de
-outros programa que utilização formatos suportados, como o Solidworks por
-exemplo. A Figura \ref{fig::blensor_screen} ilustra a utilização do software,
-assim como o modelo 3D da turbina importado. A simulação leva em consideração a
-distância percorrida pelo pulso emitido, a intensidade luminosa retornada ao
-sensor e o tempo decorrido durante o sensoriamento \cite{Gschwandtner2011}, o
-que fornece uma melhor aproximação da resposta do sensor para um ambiente
-simulado do que simplesmente a utilização de uma técnica de \textit{raycast} pura.
+outros  em outros formatos suportados, como a partir do
+Solidworks\textregistered por exemplo. A Figura \ref{fig::blensor_screen}
+ilustra a utilização do software, assim como o modelo 3D da turbina importado. A
+simulação leva em consideração a distância percorrida pelo pulso emitido, a
+intensidade luminosa retornada ao sensor e o tempo decorrido durante o
+sensoriamento \cite{Gschwandtner2011}, o que fornece uma melhor aproximação da
+resposta do sensor para um ambiente simulado do que simplesmente a utilização de
+uma técnica de \textit{raycast} pura.
 
 \begin{figure}[h!]
 	\centering
@@ -138,18 +141,41 @@ simulado do que simplesmente a utilização de uma técnica de \textit{raycast} 
 \end{figure}
 
 Dentro do ambiente de simulação, é possível a sintetização de dados provenientes
-de diversos tipos de sensores laser, como um laserscanner 2D, Velodyne e
-sensores do tipo kinect. Os parâmetros de configuração dos sensores também estão
-disponíveis para ajuste, assim como o nível de ruído. Sensores que não estão
-nativamente disponíveis também podem ser introduzidos e, assim, o sensor Faro
-Focus X330 pode ser simulado, como ilustrado na Figura \ref{fig::blensor_faro}.
+de diversos tipos de sensores laser, como um laserscanner 2D, o sensor
+Velodyne e sensores do tipo Kinect. Os parâmetros de configuração
+dos sensores também estão disponíveis para ajuste, assim como o nível de ruído. Sensores que não estão
+nativamente disponíveis podem ser introduzidos. O sensor Faro Focus X330 não
+pertence a lista de sensores previamente carregados pela ferramenta e teve que
+ser implementado. As especificações técnicas utilizadas estão de acordo com as
+fornecidas pelo fabricante, com exceção do ângulo de visão que foi reduzido para
+diminuir o esforço computacional, sem perda de informação. A figura
+\ref{fig::blensor_faro} ilustra a resposta simulada do sensor implementado
+dentro do ambiente de simulação com a presença do modelo CAD da turbina.
 
-\begin{figure}[H]
+
+ \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\columnwidth]{figs/calibracao/blensor_faro}
 	\caption{Resposta simulada do sensor Faro Focus X330.}
     \label{fig::blensor_faro}
 \end{figure}	
+
+
+Caso seja disponibilizado uma descrição do perfil hidráulico da pá, é possível
+também a geração de modelos, sem a necessidade de uma inspeção prévia em uma
+unidade geradora sem a presença de dandos para a aquisição de dados sobre a
+turbina. A figura \ref{fig::pa_blensor} ilustra o ambiente de simulação e a
+nuvem de pontos final para a criação de um modelo a partir de um arquivo
+descritivo. 
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{figs/calibracao/blensor_pa_sim}
+	\caption{Visualização do \textit{Blensor} com o modelo 3D da turbina
+	importado.}
+    \label{fig::blensor_screen}
+\end{figure}
 
 
 Com o ambiente de simulação configurado, é possível explorar diversos níveis de
