@@ -162,9 +162,9 @@ dentro do ambiente de simulação com a presença do modelo CAD da turbina.
 
 
 Caso seja disponibilizado uma descrição do perfil hidráulico da pá, é possível
-também a geração de modelos, sem a necessidade de uma inspeção prévia em uma
-unidade geradora sem a presença de dandos para a aquisição de dados sobre a
-turbina. A figura \ref{fig::pa_blensor} ilustra o ambiente de simulação e a
+também a geração de modelos sem a necessidade de uma inspeção prévia em uma
+unidade geradora, na qual haja a presença de dados nas pás, para a aquisição de
+dados sobre a turbina. A figura \ref{fig::modelo_pa} ilustra o ambiente de simulação e a
 nuvem de pontos final para a criação de um modelo a partir de um arquivo
 descritivo. 
 
@@ -172,22 +172,41 @@ descritivo.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\columnwidth]{figs/calibracao/blensor_pa_sim}
-	\caption{Visualização do \textit{Blensor} com o modelo 3D da turbina
-	importado.}
-    \label{fig::blensor_screen}
+	\caption{Criação de um sensor a partir de um arquivo descritivo da pá.}
+    \label{fig::modelo_pa}
 \end{figure}
 
+Para representar corretamente as oclusões geradas pelo própria estrutura do
+rotor e das pás, é necessário que as cenas sintetizadas a partir da ferramenta
+tenham o sensor virtual posicionado em posições que representem os locais no
+qual é possível a fixação real do equipamento dentro da UG. As oclusões geradas
+pelo sistema de metalização também devem ser previstas e simuladas para um
+perfeito ajuste do algoritmo, uma vez que o conjunto do robô e trilhos deve
+estar previamente posicionado para que a calibração entre a pá e o efetuador do
+manipulador seja realizada. Para isso, o modelo do manipulador MH12 foi
+importado para dentro do ambiente de simulação, como ilustrado na figura
+\ref{fig::model_mh12} e, em seguida, posicionado entre o sensor e a pá, para
+servir de obstáculos para parte dos feixe laser que atingiriam a pá.
 
-Com o ambiente de simulação configurado, é possível explorar diversos níveis de
-oclusão, assim como posicionamentos do sensor. O modelo 3D do manipulador
-Motoman MH12 utilizado também foi importado e foi utilizado como obstáculo para
-a identificação da pá na nuvem de pontos sintética. A Figura \ref{fig::sim_mh12}
-ilustra a pá sendo corretamente identificada com a presença do manipulador entre
-o sensor e a pá criando uma região de sombra.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\columnwidth]{figs/calibracao/sim_mh12}
+	\includegraphics[width=0.9\columnwidth]{figs/calibracao/mh12_model}
+	\caption{Visualização do \textit{Blensor} com o modelo 3D da turbina
+	importado.}
+    \label{fig::model_mh12}
+\end{figure}
+
+A Figura \ref{fig::sim_mh12}
+ilustra a pá sendo corretamente identificada com a presença do manipulador entre
+o sensor e a pá criando uma região de sombra. É possível observar o modelo que
+está sendo comparado à cena na parte direita da figura e as linhas verdes
+representam as correspondências encontradas entre os descritores do modelo da pá
+e os encontrados na cena.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{figs/calibracao/sim_mh12_sp}
 	\caption{Resposta simulada do sensor Faro Focus X330.}
     \label{fig::sim_mh12}
 \end{figure}	
