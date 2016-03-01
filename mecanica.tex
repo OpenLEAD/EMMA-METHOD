@@ -17,8 +17,7 @@ em consideração todos os esforços de operação, como: o peso do sistema, as
 cargas dinâmicas de movimentação do robô e o empuxo da pistola. 
 
 Foram estudados diversos conceitos para os graus de liberdade providos pela
-base mecânica. O estudo destes conceitos estão detalhados no artigo 
-~\ref{EMMA_DETAIL}.
+base mecânica. O estudo destes conceitos estão detalhados no EMMA-DETAIL.
 
 \subsection{Conceito}
 
@@ -205,7 +204,7 @@ dos braços de ancoragem.
 As bases magnéticas são os elementos de fixação não-permanentes que serão
 utilizados para ancoragem da estrutura no ambiente da turbina. Foram realizados
 testes para verificação da carga máxima suportada e o resultado foi
-satisfatório e apresentado no anexo do relatório %\cit[emma-detail].
+satisfatório e apresentado no anexo do EMMA-DETAIL.
 
 As bases magnéticas são equipamentos comerciais cuja principal aplicação na
 indústria é o içamento e movimentação de peças metálicas. Este equipamento é
@@ -260,4 +259,224 @@ uma vantagem de se ter um conceito modular para a estrutura.
 	\caption{Montagem da base mecânica no interior da turbina}
     \label{fig::EMMA_Base_Secundaria_01}
 \end{figure}
+
+%---------------------------------------------------------------------
+\subsection{Dimensionamento}
+
+São apresentados os cálculos de dimensionamento dos equipamentos estruturais
+da base mecânica.
+
+\subsubsection{Trilho}
+
+Para o trilho, foi utilizada a ferramenta de cálculo
+\textit{SKF Linear Guide Calculator} da fabricante SKF (disponível em:
+\url{http://www.skf.com/us/knowledge-centre/engineering-tools/skflinearguidescalculator.html}),
+que permite o dimensionamento considerando os piores cenários de carregamento,
+baseado nas forças e momentos máximos aplicados ao trilho.
+O programa analisa toda a gama de dimensões dos trilhos do tipo LLT, fornecendo
+o Fator de Segurança obtido para cada opção de tamanho.
+
+O relatório com o resultado de saída do programa encontra-se no anexo A.
+%TODO Estevão: Adicionar anexo A: Relatório SKF
+O critério escolhido para seleção do trilho baseia-se no Fator de Segurança, que
+deve ser maior ou igual a 2 ($FS\geq2$). 
+
+Escolheu-se portanto o trilho LLTHS 45 devido ao resultado dos cálculos
+atender ao critério, fornecendo um Fator de Segurança de $2,1$.
+
+%---------------------------------------------------------------------
+\subsubsection{Estrutura}
+
+Com o objetivo de verificar as tensões devido às cargas do manipulador e também
+verificar os deslocamentos por deformação elástica na base, foi feito um modelo
+para análise da estrutura. Este modelo foi resolvido pelo Método de
+Elementos Finitos utilizando o programa Autodesk\textregistered{}
+Nastran\textregistered{} In-CAD.
+
+A partir dos resultados, pode-se determinar alterações de geometria ou seleção
+de materiais, que garantam maior segurança e rigidez da estrutura.
+A seguir, são detalhados os parâmetros da simulação de Elementos Finitos.
+
+\subsubsubsection{Malha:} A análise foi modelada com elementos unidimensionais
+de tamanho global de $25~mm$, e ordem quadrática.  E foram atribuidas propriedades
+de viga, relativas ao perfil de alumínio estrutural, tais como:
+momentos de inércia, momento de inércia polar e área de seção tranversal.
+
+\subsubsubsection{Material:} O material utilizado é o alumínio EN AW-6060 (norma
+DIN EN 573) e foi definido no modelo a partir de suas propriedades físicas e
+mecânicas. %TODO Estevão: colocar referência propriedades do material
+
+\begin{center}
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Propriedade}   & \textbf{Valor} & \textbf{Unidade}    \\ \hline
+Massa específica       & $2700$           & $kg/m^3$          \\ \hline
+Módulo de Elasticidade & $70,0$           & GPa               \\ \hline
+Módulo de Cisalhamento & $26,1$           & GPa               \\ \hline
+Coeficiente de Poisson & $0,34$           &                   \\ \hline
+Limite de Escoamento   & $200$            & MPa               \\ \hline
+\end{tabular}
+\captionof{table}{Propriedades do EN AW-6060}
+\label{tab::prop_material}
+\end{center}
+
+
+\subsubsubsection{Condições de Contorno:} Para os braços de ancoragem, foram
+definidas restrições de translação em todas as direções e rotação livre, na
+extremidade da base magnética. Para os pés de apoio, definiu-se restição
+de translação apenas na direção Y. A interface entre os trilhos primário e
+secundário foi modelada utilizando elementos unidimensionais rígidos, fixados na
+mesma posição dos carrinhos de rolamento.
+
+A figura~\ref{fig::contorno} apresenta o modelo de análise da estrutura para o
+robô posicionado na face posterior da pá. Estão representados o Sistema de
+Coordenadas do modelo, a malha, as condições de contorno e os conectores
+utilizados.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{figs/dimensionamento/contorno}
+	\caption{Malha e condições de contorno}
+    \label{fig::contorno}
+\end{figure}
+
+\subsubsubsection{Carregamento:} O carregamento utilizado para simulação
+refere-se às forças e torques máximos atingidos pelo manipulador MOTOMAN modelo MH12, em
+sua base. Este carregamento estão de acordo com o manual de instalação e
+manutenção do robô como forças e torques de parada de emergência.  
+%TODO Etevão: incluir ref. manual MH12
+
+\begin{center}
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Carga}		   & \textbf{Valor} & \textbf{Unidade}   \\ \hline
+Força em X		       & 9025           & N	                 \\ \hline
+Força em Y			   & -5885          & N                  \\ \hline
+Força em Z			   & 9025           & N                  \\ \hline
+Momento em X		   & 4120           & Nm                 \\ \hline
+Momento em Y		   & 4120           & Nm                 \\ \hline
+Momento em Z		   & 4120           & Nm                 \\ \hline
+\end{tabular}
+\captionof{table}{Forças e torques na base do robô}
+\label{tab::carregamento}
+\end{center}
+
+As forças foram aplicadas através de um conjunto de conectores rígidos a partir
+do ponto que representa o ponto de origem da base do robô. São $4$ conectores
+representando a posição de cada carrinho no trilho secundário. Foram testadas
+algumas posições do carrinho sobre o trilho para definir o pior caso.
+Verificou-se que este ocorre quando o carrinho está a uma distância de
+$817,5~mm$ a partir do eixo de rotação entre os trilhos. 
+A figura ~\ref{fig::carregamento} mostra a representação do carregamento na
+direção resultante.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{figs/dimensionamento/carregamento}
+	\caption{Forças e torques na direção resultante}
+    \label{fig::carregamento}
+\end{figure}
+
+
+\subsubsection{Resultados:}
+
+Abaixo são apresentados os resultados das simulações realizadas para uma
+configuração da estrutura no modelo para revestimento da face posterior da pá. A
+figura~\ref{fig::von_mises}, apresenta o resultado das tensões de Von Mises,
+demonstrando que o maior encontrado é $5,78~MPa$.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{figs/dimensionamento/von_mises}
+	\caption{Resultado de Tensões de Von Mises na estrutura, escala exagerada de
+	deformação}
+    \label{fig::von_mises}
+\end{figure}
+
+O Fator de Segurança pode ser calculado a partir da equação: 
+
+\begin{equation*}
+	FS=\frac{\sigma _y}{\sigma _{max}}
+\end{equation*}
+
+onde $\sigma_y$ é o Limite de Escoamento do material e $\sigma_{max}$ é a tensão
+máxima encontrada. Assim, o Fator de Segurança é $34,6$.
+
+O deslocamento máximo na estrutura está demonstrado na
+figura~\ref{fig::deslocamento} e verifica-se que o valor do deslocamento
+resultante na base do manipulador foi de $0,47~mm$.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{figs/dimensionamento/deslocamento}
+	\caption{Resultado de Deslocamento Resultante na estrutura, escala real de
+	deformação}
+    \label{fig::deslocamento}
+\end{figure}
+
+
+As forças de reação nos braços de ancoragem são importantes para o
+dimensionamento da base magnética. A tabela~\ref{tab::reacao_ancoragem}
+apresenta os resultados encontrados em cada braço. A
+figura~\ref{fig::mapa_forcas} apresenta a referência de cada braço de
+ancoragem, de acordo com a tabela~\ref{tab::reacao_ancoragem}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\columnwidth]{figs/dimensionamento/mapa_forcas}
+	\caption{Referência dos braços de ancoragem para os resultados da
+	tabela~\ref{tab::reacao_ancoragem}}
+    \label{fig::mapa_forcas}
+\end{figure}
+
+\begin{center}
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Braço}  & \textbf{Fx {[}N{]}} & \textbf{Fy {[}N{]}} & \textbf{Fz {[}N{]}} \\ \hline
+\textbf{Anc\_1} & -1678               & -1966               & 39                  \\ \hline
+\textbf{Anc\_2} & -3433               & -4076               & 40                  \\ \hline
+\textbf{Anc\_3} & 131                 & 206                 & -569                \\ \hline
+\textbf{Anc\_4} & -9556               & 6621                & 6037                \\ \hline
+\textbf{Anc\_5} & -1566               & -1436               & 1461                \\ \hline
+\textbf{Anc\_6} & 651                 & 160                 & -254                \\ \hline
+\end{tabular}
+\captionof{table}{Forças de reação em cada ponto de ancoragem}
+\label{tab::reacao_ancoragem}
+\end{center}
+
+Os resultados \textit{Fx}, \textit{Fy} e \textit{Fz} referem-se às forças
+resultantes nas direções \textit{x,y,z} do sistema de coordenadas local de cada
+braço de ancoragem. Neste sistema de coordenadas, a direção \textit{x} está
+alinhada com o eixo longitudinal de cada braço de ancoragem e as direções
+\textit{y,z} são as direções ortogonais a \textit{x}. 
+Desta forma, os resultados em \textit{x} negativos indicam tração do braço de
+ancoragem e os positivos compressão.
+
+%---------------------------------------------------------------------
+\subsubsection{Base Magnética}
+
+O dimensionamento das bases magnéticas está diretamente relacionado ao resultado
+das forças resultantes em cada braço de ancoragem, já que são estes os elementos
+que representam as restrições no modelo de Elementos Finitos.
+
+Assim, deve-se comparar o resultado da tabela~\ref{tab::reacao_ancoragem} com a
+capacidade máxima de carga da base magnética comercial. Para aceitar a base
+magnética escolhida, deve-se respeitar as seguintes relações:
+
+ \begin{equation*}
+	|F_{x}|\leq\frac{2}{3}*F_{max}
+\end{equation*}
+
+ \begin{equation*}
+	|F_{y}|,|F_{z}|\leq\frac{2}{3}*\mu*F_{max}
+\end{equation*}
+
+Onde \textit{Fx, Fy, Fz} referem-se aos valores obtidos na simulação de
+Elementos Finitos apresentado na tabela~\ref{tab::reacao_ancoragem};
+$F_{max}$ é a capacidade de carga máxima da base magnética; e $\mu$ é o
+coeficiente de atrito entre a base magnética e a superfície da turbina que será
+considerado igual a $0,12$.
 
