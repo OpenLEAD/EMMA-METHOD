@@ -29,23 +29,28 @@ O conceito aqui aprofundado é denominado P-R-P-P, ou
 Prismático-Rotacional-Prismático-Prismático.
 A seguir estão descritas cada junta que compõe a base.
 
-$\bullet$\textit{Prismática 1:} A primeira junta prismática é formada por um
-trilho, sobre uma estrutura modular. Este trilho é denominado ''trilho primário'' e está
-paralelo ao eixo da turbina, indo desde a escotilha de entrada até a região 
-posterior da pá, próxima ao distribuidor.
+\begin{itemize} 
 
-$\bullet$\textit{Rotacional:} A segunda junta, rotacional, é formada por um
-eixo apoiado sobre mancais de rolamento, que liga os trilhos ''primário'' e ''secundário''. 
+	\item\textbf{Prismática 1:} A primeira junta prismática é formada por um
+	trilho, sobre uma estrutura modular. Este trilho é denominado ''trilho
+	primário'' e está paralelo ao eixo da turbina, indo desde a escotilha de
+	entrada até a região posterior da pá, próxima ao distribuidor.
 
-$\bullet$\textit{Prismática 2:} A terceira junta,
-prismática, é formada por um trilho, denominado ''trilho secundário'', também
-sobre uma estrutura modular. Este trilho é posicionado paralelo ao plano
-transversal da pá, e permitirá ao robô os deslocamentos laterais ao longo de toda a
-extensão da largura da pá. 
+	\item\textbf{Rotacional:} A segunda junta, rotacional, é formada por um
+	eixo apoiado sobre mancais de rolamento, que liga os trilhos ''primário'' e
+	''secundário''.
 
-$\bullet$\textit{Prismática 3:} A última junta, prismática, é formada por um
-macaco mecânico tipo sanfona, com curso mínimo de $200~mm$, permitindo ao robô
-maior alcance em altura.
+	\item\textbf{Prismática 2:} A terceira junta,
+	prismática, é formada por um trilho, denominado ''trilho secundário'', também
+	sobre uma estrutura modular. Este trilho é posicionado paralelo ao plano
+	transversal da pá, e permitirá ao robô os deslocamentos laterais ao longo de
+	toda a extensão da largura da pá. 
+
+	\item\textbf{Prismática 3:} A última junta, prismática, é formada por um
+	macaco mecânico tipo sanfona, com curso mínimo de $200~mm$, permitindo ao robô
+	maior alcance em altura.
+	
+\end{itemize}
 
 A figura ~\ref{fig::conceito} apresenta o conceito descrito.
 
@@ -297,12 +302,12 @@ A partir dos resultados, pode-se determinar alterações de geometria ou seleç�
 de materiais, que garantam maior segurança e rigidez da estrutura.
 A seguir, são detalhados os parâmetros da simulação de Elementos Finitos.
 
-\subsubsubsection{Malha:} A análise foi modelada com elementos unidimensionais
+\textit{Malha:} A análise foi modelada com elementos unidimensionais
 de tamanho global de $25~mm$, e ordem quadrática.  E foram atribuidas propriedades
 de viga, relativas ao perfil de alumínio estrutural, tais como:
 momentos de inércia, momento de inércia polar e área de seção tranversal.
 
-\subsubsubsection{Material:} O material utilizado é o alumínio EN AW-6060 (norma
+\textit{Material:} O material utilizado é o alumínio EN AW-6060 (norma
 DIN EN 573) e foi definido no modelo a partir de suas propriedades físicas e
 mecânicas. %TODO Estevão: colocar referência propriedades do material
 
@@ -311,7 +316,7 @@ mecânicas. %TODO Estevão: colocar referência propriedades do material
 \begin{tabular}{|l|l|l|}
 \hline
 \textbf{Propriedade}   & \textbf{Valor} & \textbf{Unidade}    \\ \hline
-Massa específica       & $2700$           & $kg/m^3$          \\ \hline
+Massa específica       & $2700$           & kg/m³             \\ \hline
 Módulo de Elasticidade & $70,0$           & GPa               \\ \hline
 Módulo de Cisalhamento & $26,1$           & GPa               \\ \hline
 Coeficiente de Poisson & $0,34$           &                   \\ \hline
@@ -322,7 +327,7 @@ Limite de Escoamento   & $200$            & MPa               \\ \hline
 \end{center}
 
 
-\subsubsubsection{Condições de Contorno:} Para os braços de ancoragem, foram
+\textit{Condições de Contorno:} Para os braços de ancoragem, foram
 definidas restrições de translação em todas as direções e rotação livre, na
 extremidade da base magnética. Para os pés de apoio, definiu-se restição
 de translação apenas na direção Y. A interface entre os trilhos primário e
@@ -341,7 +346,7 @@ utilizados.
     \label{fig::contorno}
 \end{figure}
 
-\subsubsubsection{Carregamento:} O carregamento utilizado para simulação
+\textit{Carregamento:} O carregamento utilizado para simulação
 refere-se às forças e torques máximos atingidos pelo manipulador MOTOMAN modelo MH12, em
 sua base. Este carregamento estão de acordo com o manual de instalação e
 manutenção do robô como forças e torques de parada de emergência.  
@@ -380,7 +385,7 @@ direção resultante.
 \end{figure}
 
 
-\subsubsection{Resultados:}
+\textit{Resultados:}
 
 Abaixo são apresentados os resultados das simulações realizadas para uma
 configuração da estrutura no modelo para revestimento da face posterior da pá. A
