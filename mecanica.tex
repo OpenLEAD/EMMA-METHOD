@@ -21,7 +21,7 @@ base mecânica. O estudo destes conceitos estão detalhados no EMMA-DETAIL.
 
 \subsection{Conceito}
 
-A escolha do conceito da solução foi baseado nos graus de liberdade da base
+A escolha do conceito da solução foi baseada nos graus de liberdade da base
 mecânica para permitir ao robô movimentação e alcance necessários para realizar 
 o revestimento. 
 
@@ -107,7 +107,7 @@ mostrado na figura~\ref{fig::sist_2por4}.
     \label{fig::sist_2por4}
 \end{figure}
 
-As cargas promovidas pelo manipulador podem ser elevadas, sobretudo na base, que
+As cargas promovidas pelo manipulador são elevadas, sobretudo na base, que
 reage às cargas distantes do ponto de fixação, causando momentos elevados. 
 A vantagem da utilização de mais de um carrinho por trilho é a possibilidade de
 anular-se os momentos de reação nos carrinhos, na direção ortogonal ao eixo do
@@ -126,9 +126,9 @@ A estrutura que servirá de base para o trilho deve ter como prinicipal
 característica a modularidade. Devido à geometria variável do ambiente no
 interior da turbina, é necessário também que esta estrutura permita 
 flexibilidade de montagem dos apoios e ancoragens ao longo do trilho.
-Cada módulo que da estrutura será composto pelo perfil estrutural onde
-serão fixados o trilho e os acessórios de apoio e ancoragem da estrutura no
-ambiente.
+Cada módulo da estrutura será composto pelo perfil de alumínio estrutural, a
+partir de onde serão fixados o trilho e os acessórios de apoio e ancoragem da
+estrutura no ambiente.
 Tais módulos devem permitir transporte e montagem manuais, de forma fácil e
 rápida.
 Por isso, optou-se pelo perfil de alumínio estrutural. Este perfil possui
@@ -143,7 +143,7 @@ complexas.
     \label{fig::aluminio_estrutural}
 \end{figure}
 
-A figura~\ref{fig::modulo_primario} apresenta um exemplo de um dos módulos do
+A figura~\ref{fig::modulo_primario_explod} apresenta um exemplo de um dos módulos do
 trilho primário, a partir da montagem deste no perfil de alumínio
 estrutural. Este módulo pode ser repetido ao longo do eixo longitudinal do
 trilho, formando assim a estrutura completa do trilho. 
@@ -153,9 +153,9 @@ os outros componentes.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\columnwidth]{figs/construcao/modulo_primario}
-	\caption{Perfis de alumínio estrutural}
-    \label{fig::modulo_primario}
+	\includegraphics[width=0.9\columnwidth]{figs/construcao/Modulo_Explodida_01}
+	\caption{Vista explodida de montagem com perfil de alumínio estrutural}
+    \label{fig::modulo_primario_explod}
 \end{figure}
 
 %---------------------------------------------------------------------
@@ -169,16 +169,17 @@ algum desvio. Além disto, o comprimento de cada ''perna'' da base varia ao
 longo da estrutura, sendo necessário permitir uma margem de erro de
 montagem a partir de uma regulagem de seu comprimento.
 
-Foi verificado que o maior ângulo formado entre o eixo horizontal
-e a superfície da turbina é de aproximadamente $9º$. Optou-se portanto por pés com
-interface do tipo rótula, figura~\ref{fig::spindle}, que permitem até $10º$ de
-inclinação entre a haste e à base, além de $75~mm$ de regulagem do
-comprimento, pela rosca da haste.
+Foi verificado que o maior ângulo formado entre o eixo horizontal e a superfície
+da turbina é de aproximadamente $9^{\circ}$. Optou-se portanto por pés com
+interface do tipo rótula, figura~\ref{fig::spindle}, que permitem até
+$10^{\circ}$ de inclinação entre a haste e à base, além de $75~mm$ de regulagem
+do comprimento, pela rosca da haste. Esta peça também permite ajuste de altura
+da ''perna'' pela haste rosqueada.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.4\columnwidth]{figs/construcao/spindle}
-	\caption{Pé com interface rotular entre a haste e a base}
+	\caption{Pé com junta rotular entre a haste e a base}
     \label{fig::spindle}
 \end{figure}
 
@@ -188,13 +189,13 @@ comprimento, pela rosca da haste.
 A ancoragem da estrutura é importante para prevenir movimento da base quando o
 robô estiver em movimento. Sua principal função é tornar a base rígida o
 suficiente para que as deformações elásticas e vibrações da estrutura não
-interfiram na precisão do processo de revestimento.
+interfiram na precisão requisitada para o processo de revestimento.
 
 Os braços de ancoragem são constituídos de duas juntas rotacionais em cada
 extremidade. Estas juntas permitem que o braço se ajuste a superfície da
 turbina, posicionando as bases magnéticas na orientação ideal para o acoplamento
-magnético mais eficiente possível. A figura~\ref{fig::ancoragem} apresenta um
-dos braços de ancoragem.
+magnético. A figura~\ref{fig::ancoragem} apresenta os braços de ancoragem ao
+longo da estrutura.
 
 \begin{figure}[H]
 	\centering
@@ -206,16 +207,18 @@ dos braços de ancoragem.
 %---------------------------------------------------------------------
 \subsubsection{Bases magnéticas}
 
-As bases magnéticas são os elementos de fixação não-permanentes que serão
-utilizados para ancoragem da estrutura no ambiente da turbina. Foram realizados
-testes para verificação da carga máxima suportada e o resultado foi
-satisfatório e apresentado no anexo do EMMA-DETAIL.
-
 As bases magnéticas são equipamentos comerciais cuja principal aplicação na
 indústria é o içamento e movimentação de peças metálicas. Este equipamento é
 composto por imãs permanentes que são alinhados através de uma alavanca em sua
 carcaça. Desta forma, é possível ''ligar'' e ''desligar'' o imã a qualquer
 momento.
+
+As bases magnéticas são os elementos de fixação não-permanentes que serão
+utilizados para ancoragem da estrutura no ambiente da turbina. Foram realizados
+testes para verificação da carga máxima suportada e o resultado foi
+satisfatório e apresentado na seção de Apêndice B do EMMA-DETAIL.
+
+
 
 \begin{figure}[H]
 	\centering
@@ -227,16 +230,63 @@ momento.
 %---------------------------------------------------------------------
 \subsubsection{Junta de rotação}
 
+A junta de rotação é composta por uma plataforma de posicionamento angular
+horizontal. Este equipamento é muito utilizado em máquinas fresadoras
+verticais, sendo denominado ''mesa divisora'' nesta aplicação.
+Este equipamento atende às exigências de robustez, rigidez e precisão destas
+máquinas operatrizes, portanto mostra-se ideal para a aplicação na base mecânica
+da solução robótica de revestimento.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\columnwidth]{figs/construcao/rotary_table}
+	\caption{Plataforma de rotação}
+    \label{fig::rotary_table}
+\end{figure}
+
 %---------------------------------------------------------------------
 \subsubsection{Junta de elevação}
+
+Para alcançar as regiões da pá mais próximas ao rotor, e garantir a qualidade
+ideal de revestimento, é necessária a elevação da base do manipulador em pelo
+menos $200~mm$.
+Para isso será utilizado um macaco mecânico do tipo sanfona. Este equipamento
+foi escolhido devido ao seu tamanho compacto quando retraído, $85~mm$, e um
+curso grande de elevação, $245~mm$. Seu acionamento é manual, a partir da
+rotação de uma alavanca conectada a uma barra roscada.
+Para facilitar a manipulação desta junta, será adaptado um volante no
+acionamento.
+Um conjunto de cilindros e guias garantem o movimento preciso e robustez,
+recebendo os esforços provenientes do robô e transmitindo direto para a
+estrutura, prevenindo que estes atuem no macaco mecânico.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\columnwidth]{figs/construcao/macaco_sanfona}
+	\caption{Macaco mecânico do tipo sanfona}
+    \label{fig::macaco_sanfona}
+\end{figure}
 
 %---------------------------------------------------------------------
 \subsubsection{Montagem}
 
 A montagem da base mecânica no interior da turbina é feita a partir de módulos
-(submontagens que formam elementos básicos de uma montagem maior). O exemplo de
-um módulo da estrutura primária foi apresentado na
+(ou submontagens que formam elementos básicos de uma montagem maior). O exemplo
+de um módulo da estrutura primária foi apresentado na
 figura~\ref{fig::modulo_primario}, na seção~\ref{sec::perfil}. 
+
+A ideia neste conceito é que a estrutura possa ser montada a partir de um módulo
+incial que se repete ao longo de uma mesma direção até formar-se a estrutura
+completa. A montagem deve ser prática e rápida, assim como a desmontagem e
+deve-se permitir a correção de pequenos erros de posicionamento no
+ambiente a partir de ajustes simples. Por exemplo, se a posição do módulo
+inicial estiver errada, pode-se ajustar o comprimento dos pés de apoio e a
+posição dos braços de amarração facilmente. Isto é importante principalmente
+devido a dificuldade de se estabelecer uma referência precisa no interior da
+turbina e também devido a pequenas diferenças de projeto ou construção entre uma
+turbina e outra.
+
+
 
 Neste conceito, primeiro monta-se a estrutura e trilho
 primários, e então, monta-se a base do robô no trilho primário. Esta base contém
@@ -268,8 +318,14 @@ uma vantagem de se ter um conceito modular para a estrutura.
 %---------------------------------------------------------------------
 \subsection{Dimensionamento}
 
-São apresentados os cálculos de dimensionamento dos equipamentos estruturais
-da base mecânica.
+O dimensionamento dos equipamento é a etapa que define diversos parâmetros, tal
+que se destacam: a escolha de materiais, dimensões e geometria do projeto.
+É a etapa compreendida entre o conceito ou projeto básico e o detalhamento que
+permitirá a compra dos materiais e construção do protótipo. Nesta
+etapa são verificados e calculados esforços estruturais, a integridade dos
+equipamentos e avaliados, por exemplo tensão, Fator de Segurança,
+deslocamentos e deformações resultantes. A seguir são apresentados os cálculos
+de dimensionamento dos equipamentos estruturais da base mecânica.
 
 \subsubsection{Trilho}
 
@@ -327,9 +383,9 @@ Limite de Escoamento   & $200$            & MPa               \\ \hline
 \end{center}
 
 
-\textit{Condições de Contorno:} Para os braços de ancoragem, foram
-definidas restrições de translação em todas as direções e rotação livre, na
-extremidade da base magnética. Para os pés de apoio, definiu-se restição
+\textit{Condições de Contorno:} Na extremidade onde está acoplada a base
+magnética dos braços de ancoragem, foram definidas restrições de translação
+em todas as direções e rotação livre. Para os pés de apoio, definiu-se restição
 de translação apenas na direção Y. A interface entre os trilhos primário e
 secundário foi modelada utilizando elementos unidimensionais rígidos, fixados na
 mesma posição dos carrinhos de rolamento.
@@ -387,10 +443,10 @@ direção resultante.
 
 \textit{Resultados:}
 
-Abaixo são apresentados os resultados das simulações realizadas para uma
-configuração da estrutura no modelo para revestimento da face posterior da pá. A
-figura~\ref{fig::von_mises}, apresenta o resultado das tensões de Von Mises,
-demonstrando que o maior encontrado é $5,78~MPa$.
+Abaixo são apresentados os resultados das simulações realizadas para a o modelo
+da configuração de revestimento da face posterior da pá. 
+A figura~\ref{fig::von_mises}, apresenta o resultado das tensões de Von Mises, 
+emonstrando que o maior encontrado é $5,78~MPa$.
 
 \begin{figure}[H]
 	\centering
