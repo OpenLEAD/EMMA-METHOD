@@ -26,7 +26,7 @@ descrição que ocorre de maneira implícita é por polinômios em três variáv
 descrevendo uma variedade algébrica bidimensional, enquanto as demais são
 parametrizações da superfície. 
 
-Por simplicidade, fácil manipulação algébria e implementação, a descrição
+Por simplicidade, fácil manipulação algébrica e implementação, a descrição
 puramente polinomial (implícita) foi escolhida como abordagem inicial. De
 maneira geral a superfície é descrita como o conjunto solução sobre os
 reais da equação polinomial ($f(x,y,z)=0$) de grau $N$, dito grau da
@@ -35,7 +35,10 @@ superfície, em $x$,$y$ e $z$:
 
 Os coeficientes $C_{i,j,k}$, então, são aqueles que descrevem da superfície.
 Devido a restrição do grau do polinômio, o número de coeficientes é
-$\binom{N+3}{3}$.
+$\binom{N+3}{3}$. Podendo ser vistos como coordenadas da superfície num espaço
+projetivo de dimensão igual ao número de coeficiente,
+$\mathbb{P}^{\binom{N+3}{3}}$, em outras palavras a superfície é invariante a
+escalamento dos coeficientes.
 
 Experimentalmente foi indentificado que um polinômio de quarto grau é suficiente
 para aproximar toda uma região de interesse da pá, onde será feito o coating
@@ -53,7 +56,11 @@ Explorando o fato que polinômio são lineares em seus coeficientes, um sistema
 superdeterminado, a ser resolvido por mínimo quadrados, foi contruído a partir
 do cálculo dos termos do polinômio em cada ponto da nuvem (fazendo $f(x,y,z)=0$)
 e da avaliação da normal em cada ponto, que deveria concordar com o gradiente do
-polinômio (ou seja $\nabla f(x,y,z) = \overrightarrow{n}$, onde $\overrightarrow{n}$ é a normal no ponto $(x,y,z)$ da nuvem).
+polinômio (ou seja $\nabla f(x,y,z) = \overrightarrow{n}$, onde
+$\overrightarrow{n}$ é a normal no ponto $(x,y,z)$ da nuvem).
+
+Para esse método de aproximação polinomial ser válido, algumas premissas foram
+assumidas. 
 
 %Elael Modelo Polinomial multivarial -> extrapolado para a pá inteira
 % PREMISSAS!!
