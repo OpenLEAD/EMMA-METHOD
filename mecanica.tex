@@ -74,7 +74,7 @@ utilizada a junta de elevação.
 \subsubsection{Trilho e carrinho}
 
 Para movimentação e posicionamento precisos do manipulador foi selecionado o
-sistema de trilho e carrinho de rolamento de esferas recirculantes. 
+sistema de trilho perfilado e carrinho de rolamento de esferas recirculantes. 
 O trilho selecionado tem o perfil segundo a norma ISO 12090-1 e o carrinho segue
 a norma DIN 645-1. 
 Estes componentes são próprios para aplicações nas quais se requer grande
@@ -116,8 +116,6 @@ No caso da solução proposta, as cargas são variáveis em sua magnitude e dire
 Por esta razão, a configuração que utiliza 2 trilhos e 4 carrinhos é a mais
 indicada, já que os carrinhos ficam livres de reagirem a momentos e as cargas ficam
 dividas em mais componentes.
-
-%TODO Estevão: incluir figura 4 carrinhos e 2 trilhos
 
 %---------------------------------------------------------------------
 \subsubsection{Perfil de alumínio estrutural} \label{sec::perfil}
@@ -256,9 +254,9 @@ curso grande de elevação, $245~mm$. Seu acionamento é manual, a partir da
 rotação de uma alavanca conectada a uma barra roscada.
 Para facilitar a manipulação desta junta, será adaptado um volante no
 acionamento.
-Um conjunto de cilindros e guias garantem o movimento preciso e robustez,
-recebendo os esforços provenientes do robô e transmitindo direto para a
-estrutura, prevenindo que estes atuem no macaco mecânico.
+Um conjunto de cilindros e guias garantem o movimento preciso da junta e
+robustez, transmitindo os esforços diretamente para a estrutura e prevenindo que
+estes atuem no macaco mecânico.
 
 \begin{figure}[h!]
 	\centering
@@ -273,8 +271,7 @@ estrutura, prevenindo que estes atuem no macaco mecânico.
 A montagem da base mecânica no interior da turbina é feita a partir de módulos
 (ou submontagens que formam elementos básicos de uma montagem maior). O exemplo
 de um módulo da estrutura primária foi apresentado na
-figura~\ref{fig::aluminio_estrutural}, na seção~\ref{sec::perfil}. %TODO Estevao
-% conferir figura
+figura~\ref{fig::modulo_primario_explod}, na seção~\ref{sec::perfil}. 
 
 A ideia neste conceito é que a estrutura possa ser montada a partir de um módulo
 incial que se repete ao longo de uma mesma direção até formar-se a estrutura
@@ -324,7 +321,7 @@ que se destacam: a escolha de materiais; dimensões e geometria do projeto.
 É a etapa compreendida entre o conceito ou projeto básico e o detalhamento que
 permitirá a compra dos materiais e construção do protótipo. Nesta
 etapa são verificados e calculados esforços estruturais, a integridade dos
-equipamentos e avaliados, por exemplo tensão, Fator de Segurança,
+equipamentos e avaliados, por exemplo tensão, Fator de Segurança (FS),
 deslocamentos e deformações resultantes. A seguir são apresentados os cálculos
 de dimensionamento dos equipamentos estruturais da base mecânica.
 
@@ -338,15 +335,19 @@ com forças e momentos máximos aplicados ao trilho.
 O programa analisa toda a gama de dimensões dos trilhos do tipo LLT, fornecendo
 o Fator de Segurança obtido para cada opção de tamanho.
 
-O relatório com o resultado de saída do programa encontra-se no anexo
-\ref{append::skf}.
-%TODO Estevão: Adicionar anexo A: Relatório SKF
 O critério escolhido para seleção do trilho baseia-se no Fator de Segurança, que
 deve ser maior ou igual a 2 ($FS\geq2$). 
 
-Escolheu-se portanto o trilho LLTHS 45 devido ao resultado dos cálculos
-atender ao critério, fornecendo um Fator de Segurança de $2,1$. %TODO Estevao
-% mais uma justificativa, preco?
+Um relatório com o resultado de saída do programa encontra-se no Apêndice~\ref{append::skf}. 
+Neste relatório estão apresentados os resultados de força resultante em cada
+carrinho e o Fator de Segurança para algumas opções de montagem trilho-carrinho,
+nos tamanhos 30 a 45. Dentre as opções, as que apresentaram resultado dentro do
+critério de Fator de Segurança foram LLTHS 45 com sufixos U, A, R, LU, LA e LR.
+Esta designação refere-se apenas ao carrinho que pode ter algumas variações de
+tamanho e configuração de montagem. O conjunto trilho-carrinho selecionado foi
+portanto o LLTHS 45 A, que apresenta FS igual a $2,1$ além de ser a opção padrão
+do fabricante, tendo vantagens de disponibilidade e custo.
+
 
 %---------------------------------------------------------------------
 \subsubsection{Estrutura}
@@ -366,15 +367,14 @@ de tamanho global de $25~mm$, e ordem quadrática.  E foram atribuidas proprieda
 de viga, relativas ao perfil de alumínio estrutural, tais como:
 momentos de inércia, momento de inércia polar e área de seção tranversal.
 
-\textit{Material:} O material utilizado é o alumínio EN AW-6060 (norma
-DIN EN 573) e foi definido no modelo a partir de suas propriedades físicas e
-mecânicas. %TODO Estevão: colocar referência propriedades do material
+\textit{Material:} O material utilizado é o alumínio EN AW-6060
+(norma~\cite{DIN_2007}) e foi definido no modelo a partir de suas propriedades físicas e mecânicas.
 
 \begin{center}
 \centering
 \begin{tabular}{|l|l|l|}
 \hline
-\textbf{Propriedade}   & \textbf{Valor} & \textbf{Unidade}    \\ \hline
+\textbf{Propriedade}   & \textbf{Valor}   & \textbf{Unidade}  \\ \hline
 Massa específica       & $2700$           & kg/m³             \\ \hline
 Módulo de Elasticidade & $70,0$           & GPa               \\ \hline
 Módulo de Cisalhamento & $26,1$           & GPa               \\ \hline
@@ -408,8 +408,8 @@ utilizados.
 \textit{Carregamento:} O carregamento utilizado para simulação
 refere-se às forças e torques máximos atingidos pelo manipulador MOTOMAN modelo MH12, em
 sua base. Este carregamento está de acordo com o manual de instalação e
-manutenção do robô como forças e torques de parada de emergência.  
-%TODO Etevão: incluir ref. manual MH12
+manutenção (\cite{MH12_manual}) do robô como forças e torques de parada de
+emergência.
 
 \begin{center}
 \centering
