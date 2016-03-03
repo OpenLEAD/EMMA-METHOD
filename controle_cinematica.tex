@@ -7,7 +7,7 @@ execução bem sucedida da operação, levando em consideração a cinemática,
 dinâmica e controle do manipulador. 
 
 A metodologia percorre os seguintes tópicos: 1) discretização da pá; 2)
-avaliação de revestimentodos extremos da pá, restringindo a base a um trilho
+avaliação de revestimento dos extremos da pá, restringindo a base a um trilho
 idealizado pelo projeto mecânico; 3) teste de revestimento completo; 4) teste de
 revestimento de áreas até então não revestidas, sugerindo novas posições para a
 base. Onde 1) já foi previamente avaliado em \textit{EMMA-DETAIL}. 
@@ -22,11 +22,11 @@ pistola e o plano da pá deve ser $90^o \pm 60^o$, mas é aconselhável uma
 tolerância máxima de $30^o$.
 
 Além disso, vale observar algumas conclusões feitas no relatório
-\textit{EMMA-DETAIL}: 1) a análise cinemática é verificar se, dado um ponto da
+\textit{EMMA-DETAIL}: 1) a análise cinemática verifica se, dado um ponto da
 pá, há alguma configuração das juntas para revestí-lo; 2) a análise dinâmica
 mostrou que, durante a execução de uma trajetória, se o manipulador estiver
 muito próximo do ponto que deseja revestir, os ângulos das juntas tendem a
-variar muito, aumentando muito os torques e impossibilitando a operação.
+variar muito, aumentando drasticamente os torques e impossibilitando a operação.
 
 
 \subsubsection{Avaliação dos extremos da pá} 
@@ -34,7 +34,7 @@ variar muito, aumentando muito os torques e impossibilitando a operação.
 É fácil observar que as áreas de mais difícil acesso à pá são suas extremidades,
 áreas em preto da figura~\ref{fig::extremidades}, devido ao alcance do robô e
 por serem áreas em que a pá apresenta maior inclinação. A alteração da direção
-do vetor normal à pá e a posição do ponto a ser revestido são os fatores mais
+do vetor normal à pá e a posição do ponto a ser revestido são os fatores 
 importantes para a aplicação de revestimento, isto é, pontos em uma posição
 elevada para o robô e vetor normal direcionada para cima são complexos. Observe
 a figura~\ref{fig::normal}, o vetor $\vec{P}$ é um exemplo de vetor normal
@@ -70,7 +70,7 @@ A figura~\ref{fig::trilho2all} mostra todas as posições simuladas para a base 
 robô. As restrições dessas posições são a altura mínima da base ao aro câmara e
 a altura do robô. Para cada posição de base e ângulo do rotor, foi simulado o
 processo de revestimento para as quatro extremidades da pá, levando em
-consideração as tolerâncias.
+consideração as respectivas tolerâncias.
 
 \begin{figure}[!ht]
 	\centering	
@@ -102,8 +102,8 @@ A simulação mostrou que o robô foi capaz de revestir toda a extremidade, na
 altura mínima $y=-3220$ mm, a uma distância de até $x=1200$ mm da pá. Conforme o
 robô se aproxima da pá, verifica-se que a altura pode sofrer variações
 positivas, por exemplo para $x=980$ mm, $y=-3070$ mm. Entretanto, como já foi
-verificado na simulação dinâmica, não é aconselhável aproxima o robô da pá a uma
-distância inferior a $x=1000$ mm, pois os torques durante a execução podem ser
+verificado na simulação dinâmica, não é aconselhável aproximar o robô da pá a
+uma distância inferior a $x=1000$ mm, pois os torques durante a execução podem ser
 elevados.
 
 Dessa forma, a extremidade inferior esquerda não mostrou desafios técnicos.
@@ -111,7 +111,7 @@ Dessa forma, a extremidade inferior esquerda não mostrou desafios técnicos.
 \paragraph{Extremidade inferior direita}
 
 A extremidade inferior direita possui complexidade de posição do ponto a
-ser revestido maior que a extremidade inferior esquera, visto que a extremidade
+ser revestido maior que a extremidade inferior esquerda, visto que a extremidade
 está mais próxima da área em que a curvatura do aro é superior a $20^o$ (base
 mais próxima do solo). A figura~\ref{fig::footright} mostra a discretização da
 pá na extremidade esquerda: pontos azuis são pontos revestidos na tolerância de
@@ -207,7 +207,8 @@ estratégias para a solução de revestimento da extremidade direita da pá. A
 simulação de teste de toda a pá considerou as seguintes variáveis:
 
 \begin{itemize}
-  \item O ângulo das pás da turbina variam de $0^o$ a $24^o$. O acréscimo deste
+  \item O ângulo de ataque das pás da turbina variam de $0^o$ a $29^o$. 
+  O acréscimo deste
   grau de liberdade buscou solucionar o problema da extremidade direita.
   \item O rotor da turbina foi girado de $0^o$ a $30^o$ com passo de $3^o$.
   Manteve-se este grau de liberdade, pois em conjunto com o giro da pá, o
@@ -250,7 +251,7 @@ elevação da base do robô; aumentar tolerância de ângulo de revestimento par
 $60^o$; e rotação da turbina para $-15^o$. Como esta
 região da pá tem inclinação projetada para o robô, alterar o ângulo da pá de $24^o$ para $0^o$ não favorece o
 revestimento (figura~\ref{fig::simcomp1_4}). Em termos de operação, as três
-medidas possuem desvantagens: rotar a turbina é complexo, visto que será
+medidas possuem desvantagens: rotacionar a turbina é complexo, visto que será
 necessário realizar um procedimento para transportar os equipamentos a uma área
 de segurança e fazer a recalibração; elevar o robô apresenta complexidade
 mecânica, já que exige mais um grau de liberdade da base, e fazer recalibração;
@@ -328,9 +329,9 @@ A figura~\ref{fig::simcomp1_4} mostra a discretização completa da pá, nas
 condições em que o rotor está $0^o$ e a pá $0^o$. Conforme a pá é girada, o
 revestimento aumenta na lateral direita e se mantém na lateral esquerda. Isso
 ocorre, pois o robô se mantém longe do aro câmara no lado direito, já que o aro
-ainda não está $20^o$. Esta é a melhor posição para revestimento da pá,
-situação aparente ao método da Rijeza. Entretanto, esta configuração fornece
-pequeno espaçamento entre pás, estreitando a passagem do robô e, muito
+ainda não está a $20^o$. Esta é a melhor posição para revestimento da pá,
+situação aparente ao método empregado pela Rijeza. Entretanto, esta configuração
+fornece pequeno espaçamento entre pás, estreitando a passagem do robô e, muito
 provavelmente, não é possível alterar esse ângulo frequentemente já que exige
 funcionamento do circuito hidráulico.
 
@@ -344,7 +345,7 @@ funcionamento do circuito hidráulico.
 
 \paragraph{Extremidade superior direita}
 A extremidade superior direita requer uma nova estratégia, pois todas as
-outras falharam até então: rotar turbina, girar pá, elevar o robô no trilho
+outras falharam até então: rotacionar turbina, girar pá, elevar o robô no trilho
 $y+500 mm$. Não há possibilidade, portanto, de realizar o revestimento a partir
 do trilho 2 (posicionamento). A solução encontrada até o momento é rotar a
 turbina $45^o$, manter a pá em $24^o$ e posicionar o robô entre as pás, no
@@ -377,8 +378,8 @@ turbina, e as diversas variáveis do processo de revestimento.
 
 A partir dos resultados das simulações, podemos concluir que é possível realizar
 o revestimento completo da pá, inclusive das áreas de mais difícil acesso, como
-as extremidades. O revestimento completo, no entano, requer uma extensa
+as extremidades. O revestimento completo, no entanto, requer uma extensa
 logística de operação. Para cada face da pá, o robô deverá executar o
-procedimento tanto no de posicionamento (trilho 2), quanto no trilho de
+procedimento tanto no trilho de posicionamento (trilho 2), quanto no trilho de
 transporte (trilho 1), a fim de revestir a área mais complexa, extremidade
 superior direita. 
