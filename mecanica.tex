@@ -171,8 +171,7 @@ Foi verificado que o maior ângulo formado entre o eixo horizontal e a superfíc
 da turbina é de aproximadamente $9^{\circ}$. Optou-se portanto por pés com
 interface do tipo rótula, exemplificado na figura~\ref{fig::spindle}, que
 permitem até $10^{\circ}$ de inclinação entre a haste e à base, além de $75~mm$ de regulagem
-do comprimento, por meio da rosca da haste. Esta peça também permite ajuste de
-altura da ''perna'' pela haste rosqueada. %TODO Conferir Estevao
+do comprimento, por meio da rosca da haste. %TODO Conferir Estevao
 
 \begin{figure}[h!]
 	\centering
@@ -229,11 +228,15 @@ satisfatório e apresentado na seção de Apêndice B do EMMA-DETAIL.
 \subsubsection{Junta de rotação}
 
 A junta de rotação é composta por uma plataforma de posicionamento angular
-horizontal. Este equipamento é muito utilizado em máquinas fresadoras
-verticais, sendo denominado ''mesa divisora'' nesta aplicação.
+horizontal.
+O princípio de funcionamento é através de um par de engrenagens sem-fim e coroa,
+em que e o acionamento do sem-fim pode ser feito por um volante com marcação de
+ângulo. Este equipamento é muito utilizado em máquinas fresadoras verticais,
+sendo denominado ''mesa divisora'' nesta aplicação.
 Este equipamento atende às exigências de robustez, rigidez e precisão destas
 máquinas operatrizes, portanto mostra-se ideal para a aplicação na base mecânica
-da solução robótica de revestimento.
+da solução robótica de revestimento. A figura~\ref{fig::rotary_table} apresenta
+uma mesa divisora com acinoamento manual e sistema sem-fim e coroa.
 
 \begin{figure}[h!]
 	\centering
@@ -245,13 +248,13 @@ da solução robótica de revestimento.
 %---------------------------------------------------------------------
 \subsubsection{Junta de elevação}
 
-Para alcançar as regiões da pá mais próximas ao rotor, como verificado pela
-anális de espaçotrabalho do manipulador no EMMA-DETAIL, e garantir a qualidade
-ideal de revestimento, é necessária a elevação da base do manipulador em pelo menos $200~mm$.
-Para isso será utilizado um macaco mecânico do tipo sanfona. Este equipamento
-foi escolhido devido ao seu tamanho compacto quando retraído, $85~mm$, e um
-curso grande de elevação, $245~mm$. Seu acionamento é manual, a partir da
-rotação de uma alavanca conectada a uma barra roscada.
+Estudo apresentado no EMMA-DETAIL mostrou que para alcançar as regiões da pá
+mais próximas ao rotor, e garantir a qualidade ideal de revestimento, é
+necessária a elevação da base do manipulador em pelo menos $200~mm$.
+Para realizar esta tarefa será utilizado um macaco mecânico do tipo sanfona.
+Este equipamento foi escolhido devido ao seu tamanho compacto quando retraído,
+$85~mm$, e um curso grande de elevação, $245~mm$. Seu acionamento é manual a
+partir da rotação de uma alavanca conectada a uma barra roscada.
 Para facilitar a manipulação desta junta, será adaptado um volante no
 acionamento.
 Um conjunto de cilindros e guias garantem o movimento preciso da junta e
@@ -327,7 +330,7 @@ de dimensionamento dos equipamentos estruturais da base mecânica.
 
 \subsubsection{Trilho}
 
-Para o trilho, foi utilizada a ferramenta de cálculo
+Para o conjunto trilho-carrinho, foi utilizada a ferramenta de cálculo
 \textit{SKF Linear Guide Calculator} da fabricante SKF (disponível em:
 \url{http://www.skf.com/us/knowledge-centre/engineering-tools/skflinearguidescalculator.html}),
 que permite o dimensionamento considerando os piores cenários de carregamento,
@@ -347,7 +350,7 @@ Esta designação refere-se apenas ao carrinho que pode ter algumas variações 
 tamanho e configuração de montagem. O conjunto trilho-carrinho selecionado foi
 portanto o LLTHS 45 A, que apresenta FS igual a $2,1$ além de ser a opção padrão
 do fabricante, tendo vantagens de disponibilidade e custo.
-
+%TODO TODOS: Corrigir numeração do Apêndice na compilação
 
 %---------------------------------------------------------------------
 \subsubsection{Estrutura}
@@ -408,7 +411,7 @@ utilizados.
 \textit{Carregamento:} O carregamento utilizado para simulação
 refere-se às forças e torques máximos atingidos pelo manipulador MOTOMAN modelo MH12, em
 sua base. Este carregamento está de acordo com o manual de instalação e
-manutenção (\cite{MH12_manual}) do robô como forças e torques de parada de
+manutenção do robô (\cite{MH12_manual}) como forças e torques de parada de
 emergência.
 
 \begin{center}
