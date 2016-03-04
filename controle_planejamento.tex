@@ -1,6 +1,28 @@
 \subsection{Planejamento de trajetória}
 
+O conhecimento de todas as regiões que podem ser recobertas pelo robô ajudam na
+validação do posicionamento do robô. Porém, ainda é necessário descrever o
+caminho a ser percorrido efetuador no espaço de trabalho de maneira a cumprir os
+requisitos de coating e o respectivo caminho percorrido no espaço de juntas.
 
+A definição desse caminho é facilitada pelo conhecimento analítico da superfície
+da pá que se torna, então, a primeira etapa dessa tarefa. Com essa descrição da
+pá são definidos, sobre ela, uma série de faixas que segmenta a pá. Essas
+faixas são chamadas de paralelos.
+
+Os paralelos são espaçados de 3 em 3 milímetros para o cumprimento das exigência
+de coating e são dispostos de forma a não possuirem intersecção entre si. A
+união dos paralelos (considrando uma faixa de 3mm entre eles) recobre todos os
+pontos da pá, assim caso percorridos, todos, a pá estará completamente
+recoberta.  
+
+O trânsido da ferramenta de coating entre o caminho definido por um
+paralelo e outro paralelo é feito por meridianos. Estes são segmentos que
+conectam extremidades dos paralelos e não são pensados para cumprir qualquer
+exigência de coating. A vávula deve estar fechada e o coating interrompido
+durante o tempo que o efetuador percorre todo o meridiano. A razão de existência
+dele é meramente definir uma maneira de levar o efetuador de um paralelo a
+outro.
 
 \input{controle_superficie}
 \input{controle_paralelos}

@@ -1,27 +1,13 @@
 \subsubsection{Modelagem da superfície}\label{modelagem}
 
-%
-%Book
-%Geometry and Computing
-%Volume 3 2008
-%Subdivision Surfaces
-%Authors: Jörg Peters, Ulrich Reif
-%ISBN: 978-3-540-76405-2 (Print) 978-3-540-76406-9 (Online)
-
-% BEZIER
-%Farin, Gerald. Curves and Surfaces for CAGD (5th ed.). Academic Press. ISBN
-% 1-55860-737-4.
-
-
-
-
 Existem diversas abordagens matemáticas para descrição de superfícies como:
 Parametrização Polinomial; Polinômios em três variáveis; Superfícies de
-Bézier; Splines e NURBS (\textit{Non-uniform rational B-spline}); Subdivisão de
-superfícies; Malhas poligonais.
+Bézier (\cite{farin2002curves}); Splines e NURBS (\textit{Non-uniform rational
+B-spline}); Subdivisão de superfícies (\cite{peters2008subdivision}); Malhas
+poligonais.
 
 Todas essas formas de representar uma superfície, com excessão das malhas,
-recaem em alguma instância em uma descrição polinomial. Dentre essas o única
+recaem em alguma instância em uma descrição polinomial. Dentre essas a única
 descrição que ocorre de maneira implícita é por polinômios em três variáveis,
 descrevendo uma variedade algébrica bidimensional, enquanto as demais são
 parametrizações da superfície. 
@@ -58,9 +44,6 @@ do cálculo dos termos do polinômio em cada ponto da nuvem (fazendo $f(x,y,z)=0
 e da avaliação da normal em cada ponto, que deveria concordar com o gradiente do
 polinômio (ou seja $\nabla f(x,y,z) = \overrightarrow{n}$, onde
 $\overrightarrow{n}$ é a normal no ponto $(x,y,z)$ da nuvem).
-
-Para esse método de aproximação polinomial ser válido, algumas premissas foram
-assumidas. 
 
 %Elael Modelo Polinomial multivarial -> extrapolado para a pá inteira
 % PREMISSAS!!
