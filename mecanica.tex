@@ -472,8 +472,41 @@ onde $\sigma_y$ é o Limite de Escoamento do material e $\sigma_{max}$ é a tens
 máxima encontrada. Assim, o Fator de Segurança é $34,6$.
 
 O deslocamento máximo na estrutura está demonstrado na
-figura~\ref{fig::deslocamento} e verifica-se que o valor do deslocamento
-resultante na base do manipulador foi de $0,47~mm$.
+figura~\ref{fig::deslocamento} e verifica-se que o valor da translação
+resultante da base do manipulador foi de $0,47~mm$.
+
+A rotação da base também causa erros de posicionamento do efetuador. Para o
+cálculo deste desvio foram criados 3 pontos, tais que estes formam dois
+vetores perpendiculares e um terceiro que é resultado do produto vetorial entre eles.
+Estes pontos são unidos por conectores rígidos, tal que mantém-se o ângulo e a
+distância entre eles após a deformação da estrutura. Desta forma, permite-se
+calcular a matriz de rotação que leva o conjunto de vetores que formam a base
+ortonormal inicial ($\vec{a_1},\vec{a_2},\vec{a_3}$) para o conjunto de
+vetores da base ortonormal resultante ($\vec{b_1},\vec{b_2},\vec{b_3}$) das
+deformações elásticas da estrutura. A matriz rotação é calculada da seguinte forma:
+\begin{equation*}
+R=
+\begin{bmatrix}
+	    |   &       |   &      |      \\
+	\vec{b_1} & \vec{b_2} & \vec{b_3} \\
+	    |   &       |   &      |      \\
+\end{bmatrix}
+\begin{bmatrix}
+	    |   &       |   &      |      \\
+	\vec{a_1} & \vec{a_2} & \vec{a_3} \\
+	    |   &       |   &      |      \\
+\end{bmatrix} ^{-1}
+\end{equation*}
+
+Pode-se então obter o ângulo de rotação pela seguinte relação:
+\begin{equation*}
+	\theta=cos^{-1} \left(\frac{tr(R)-1}{2}\right)
+\end{equation*}
+
+O resultado, para o caso de forças máximas do manipulador, é uma variação
+angular de $0,0149^{\circ}$ em sua base, o que causaria, para efeito de
+escala, um erro de $0,522~mm$ em uma distância de $2~m$ de sua origem.
+
 
 \begin{figure}[h!]
 	\centering
