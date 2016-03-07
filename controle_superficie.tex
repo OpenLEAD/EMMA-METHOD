@@ -32,11 +32,12 @@ para uma posição do robô, com erro submilimétrico. Nesse caso, o número de
 coeficientes que devem ser identificados é $\binom{7}{3}$, ou seja, 35.
 
 % TODO nome do artigo
-Com base no artigo !!!!!!! a passagem da descrição da superfície por nuvem de
-pontos para analítica foi feita utilizando a informação da direção da normal à
-superfície em cada ponto. Para isso o peso dado a importância da superfície
-descrita concordar com a normal em cada ponto foi o mesmo que o peso dado para
-que a superfície passe por esse ponto.
+Com base no artigo !!!!!!! a representação analítica da núvem de pontos é um
+ajuste de curvas (\textit{curve fitting} \cite{arlinghaus1994practical}) pelo
+método dos mínimos quadrados, no qual o peso dado aos vetores normais
+das amostras é igual ao peso das amostras. Portanto, o algoritmo calcula os
+coeficientes de um polinômio que melhor ajustam (por mínimos quadrados) uma
+superfície aos pontos amostrados e aos seus respectivos vetores normais.
 
 Explorando o fato que polinômio são lineares em seus coeficientes, um sistema
 superdeterminado, a ser resolvido por mínimo quadrados, foi contruído a partir
