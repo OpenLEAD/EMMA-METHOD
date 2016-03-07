@@ -15,7 +15,7 @@ parametrizações da superfície.
 Por simplicidade, fácil manipulação algébrica e implementação, a descrição
 puramente polinomial (implícita) foi escolhida como abordagem inicial. De
 maneira geral a superfície é descrita como o conjunto solução sobre os
-reais da equação polinomial ($f(x,y,z)=0$) de grau $N$, dito grau da
+números reais da equação polinomial ($f(x,y,z)=0$) de grau $N$, dito grau da
 superfície, em $x$,$y$ e $z$:
 \[\sum\limits_{i+j+k \leq N}^{} C_{i,j,k}x^iy^jz^k = 0\]
 
@@ -27,15 +27,14 @@ $\mathbb{P}^{\binom{N+3}{3}}$, em outras palavras a superfície é invariante a
 escalamento dos coeficientes.
 
 Experimentalmente foi indentificado que um polinômio de quarto grau é suficiente
-para aproximar toda uma região de interesse da pá, onde será feito o coating
+para aproximar toda uma região de interesse da pá, onde será feito o revestimento
 para uma posição do robô, com erro submilimétrico. Nesse caso, o número de
 coeficientes que devem ser identificados é $\binom{7}{3}$, ou seja, 35.
 
-% TODO nome do artigo
-Com base no artigo de \cite{juttler2002least} a passagem da descrição da
-superfície por nuvem de pontos para analítica foi feita utilizando a informação da direção da normal à
-superfície em cada ponto, ou seja, a superfície analítica deve não apenas passar
-próxima as pontos da nuvem como deve também ter seu vetor normal similiar à
+Com base no artigo de \cite{juttler2002least}, a conversão da descrição da
+superfície de nuvem de pontos para uma descrição analítica foi feita utilizando
+a informação da direção da normal à superfície em cada ponto, ou seja, a superfície analítica deve não apenas passar
+próxima aos pontos da nuvem como deve também ter seu vetor normal similiar à
 normal desses pontos.
 
 Explorando o fato que polinômio são lineares em seus coeficientes, um sistema
