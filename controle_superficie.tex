@@ -2,8 +2,8 @@
 
 Existem diversas abordagens matemáticas para descrição de superfícies como:
 Parametrização Polinomial; Polinômios em três variáveis; Superfícies de
-Bézier (\cite{farin2002curves}); Splines e NURBS (\textit{Non-uniform rational
-B-spline}); Subdivisão de superfícies (\cite{peters2008subdivision}); Malhas
+Bézier (\cite{farin2002curves}); Splines e NURBS (\textit{Non-uniform
+rational B-spline}); Subdivisão de superfícies (\cite{peters2008subdivision}); Malhas
 poligonais.
 
 Todas essas formas de representar uma superfície, com excessão das malhas,
@@ -32,19 +32,20 @@ para uma posição do robô, com erro submilimétrico. Nesse caso, o número de
 coeficientes que devem ser identificados é $\binom{7}{3}$, ou seja, 35.
 
 % TODO nome do artigo
-Com base no artigo !!!!!!! a representação analítica da núvem de pontos é um
-ajuste de curvas (\textit{curve fitting} \cite{arlinghaus1994practical}) pelo
-método dos mínimos quadrados, no qual o peso dado aos vetores normais
-das amostras é igual ao peso das amostras. Portanto, o algoritmo calcula os
-coeficientes de um polinômio que melhor ajustam (por mínimos quadrados) uma
-superfície aos pontos amostrados e aos seus respectivos vetores normais.
+Com base no artigo de \cite{juttler2002least} a passagem da descrição da
+superfície por nuvem de pontos para analítica foi feita utilizando a informação da direção da normal à
+superfície em cada ponto, ou seja, a superfície analítica deve não apenas passar
+próxima as pontos da nuvem como deve também ter seu vetor normal similiar à
+normal desses pontos.
 
 Explorando o fato que polinômio são lineares em seus coeficientes, um sistema
-superdeterminado, a ser resolvido por mínimo quadrados, foi contruído a partir
-do cálculo dos termos do polinômio em cada ponto da nuvem (fazendo $f(x,y,z)=0$)
-e da avaliação da normal em cada ponto, que deveria concordar com o gradiente do
-polinômio (ou seja $\nabla f(x,y,z) = \overrightarrow{n}$, onde
-$\overrightarrow{n}$ é a normal no ponto $(x,y,z)$ da nuvem).
+superdeterminado, a ser resolvido por mínimo quadrados(\textit{curve fitting}
+\cite{arlinghaus1994practical}) , foi contruído a partir do cálculo dos termos
+do polinômio em cada ponto da nuvem (fazendo $f(x,y,z)=0$) e da avaliação da
+normal em cada ponto, que deveria concordar com o gradiente do polinômio (ou
+seja $\nabla f(x,y,z) = \overrightarrow{n}$, onde $\overrightarrow{n}$ é a
+normal no ponto $(x,y,z)$ da nuvem), dessa forma o peso dado aos vetores normais
+das amostras é igual ao peso das amostras.
 
 %Elael Modelo Polinomial multivarial -> extrapolado para a pá inteira
 % PREMISSAS!!
