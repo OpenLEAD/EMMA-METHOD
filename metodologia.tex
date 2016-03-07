@@ -10,12 +10,16 @@ resultados. Primeiramente, no EMMA-SOTA foi realizado uma pesquisa e delimitaç�
 do escopo do problema, etapa fundamental para o completo entendimento do problema e
 responsável por direcionar o esboço das primeiras soluções. 
 
-Neste documento será verificada a viabilidade da utilização do manipulador MH12,
-confirmando que é possível a total cobertura da pá durante o processo de
-revestimento. A análise cinemática, dinâmica serão realizadas com o auxílio de
+Como visto em EMMA-DETAIL, o manipulador eleito para integrar a solução foi o
+Motoman\textregistered MH12, pois possui
+recobrimento de quase todo o alcance vertical da pá (revestimento de cima a
+baixo), capacidade de carga suficiente para a operação e peso dentro das
+restrições impostas. Neste documento será verificada a real viaabilidade de
+sua utilização , confirmando que é possível a total cobertura da pá durante o
+processo de revestimento. A análise cinemática, dinâmica serão realizadas com o auxílio de
 ferramentas de simulação como a plataforma OpenRAVE. Em seguida a estratégia de
-controle e planejamento de trajetória assegura que a movimentação do manipulador
-se desevolva de forma contínua em todo o espaço de juntas e que as velocidades e
+controle e planejamento de trajetória tem o objetivo de assegurar que a
+movimentação do manipulador se desevolva de forma contínua em todo o espaço de juntas e que as velocidades e
 acelerações máximas sejam respeitadas.
 
 A análise detalhada de cobertura da pá, fornece os requisitos mínimos que a base
@@ -29,23 +33,10 @@ solução e o dimensionamento dos componentes. Os resultados do dimensionamento
 permitirão o detalhamento final da base mecânica, compra de materiais, montagem
 e testes.
 
-
-
-
-
-Solução mecanica
-
-Conceito PRPP trilho primario transporte e trilho secundario posicionamento de
-coating
-
-Construcao - material, apoio, ancoragem, montagem e desmontagem
-
-Dimensionamento - elementos finitos, tensoes forcas e momentos
-
 A operação de montagem do trilho e posicionamento do robô, assim como
-a rotação do rotor, isto é, o ângulo em que a pá se encontram não são fixos ou
+a rotação do rotor, isto é, o ângulo em que a pá se encontra, não são fixos ou
 precisamente reprodutíveis e por isso a calibração deve ser realizada e as
 transformadas de coordenadas entre o manipulador e a pá devem ser econtradas.
 Para localizar o manipulador é estudada a utilização de marcadores e o
-posicionamento da pá é encontrado por meio da análise dos dados tridimensionais
-provenientes do sensor Faro\textregistered Focus X330
+posicionamento da pá será encontrado por meio da análise dos dados
+tridimensionais provenientes do sensor Faro\textregistered Focus X330
