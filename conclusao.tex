@@ -28,7 +28,17 @@ quanto pelas juntas (no espaço de juntas).
 
 Porém, validações da precisão do resultado e análise de colisão devem ser mais
 exploradas. Também devem ser julgadas pequenas modificações do método como
-aplicação de minímos quadrados móveis na definição da superfície, técnica tal
-que possibilita um maior controle do erro localmente.
+aplicação de minímos quadrados móveis na definição da superfície, técnica 
+que possibilitaria um maior controle do erro localmente.
 
 % -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+%Calibração
+
+Por sua vez, a exploração das características trdimensionais do ambiente,
+aquisitadas pelo sensor laser Faro Focus X330, se mostrou viável para a identificação da posição
+e orientação do robô e da pá a ser processada.
+A utilização de marcadores será empregrada sempre que possível. Entretanto para
+a localicazação da pá, apenas a nuvem de pontos será utilizada, devido a
+limitaçoes de instalção.
+A simulação do ambiente da turbina possibilitou a implementação de um algoritmo preliminar e o
+teste com a presença de oclusões e ruído.

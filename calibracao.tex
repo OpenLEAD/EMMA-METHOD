@@ -398,6 +398,93 @@ e os encontrados na cena.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\columnwidth]{figs/calibracao/sim_mh12_sp}
-	\caption{Resposta simulada do sensor Faro Focus X330.}
+	\caption{Resposta do algoritmo de calibração, com destaque para as
+	correspondências encontradas.}
     \label{fig::sim_mh12}
 \end{figure}	
+
+
+
+\subsection{Análise de resultados}
+
+Os resultados apresentados pelo algoritmo de calibração não fornecem informação
+da qualidade da transformada encontrada, apenas uma representação visual
+confirmando que o modelo foi aproximadamente posicionado de maneira correta.
+É necessário, então, uma análise mais estruturada dos resultados obtidos, afim
+de se ter uma medida da eficiência apresentada pelo processo de calibração e
+também avaliar se a precisão encontrada está em conformidade com a necessária
+para a realização do revestimento e dentro de uma margem de segurança.
+
+A partir dos dados de simulação, foram sintetizados modelos com os elementos
+posicionados de maneira estruturada, a fim de ser possível medir a discrepância
+entre a tranformação de coordenadas medida e a de referência. 
+
+O processo de criação das nuvem de pontos sintéticas consiste em importar um
+modelo CAD para o ambiente de simulação da ferramenta Blensor em uma posição
+específica relativa ao sistema de coordenadas do sensor simulado. 
+
+Na no teste padrão foram utilizados os seguintes elementos: modelo de 1 quarto
+da turbina contendo uma pá, chamado de cena; modelo frontal da pá, chamado de
+modelo. O ponto de referência considerado no modelo da pá foi a origem de seu
+arquivo CAD, assim como no caso da cena, foi considerado a origem do rotor como
+ponto de referência.
+
+A comparação entre a transformada medida e a de referência se da por meio da
+comparação de dois caminhos que represetam a transformação do sistema de
+coordenadas da origem do sensor presente na aquisição de dados da cena e a
+origem da pá $T_{cp}$.  Para isso, são necessárias as seguintes transformadas:
+
+\begin{itemize}
+  \item $\mathbf{T_{mp}}$ - Transformada entre o sensor do modelo e a
+  origem do sistema de coordenadas da pá, proveniente de seu arquivo CAD.
+  \item $\mathbf{T_{cr}}$ - Transformada entre o sensor da cena e a origem do
+  rotor, que coincide com a origem do arquivo CAD da turbina.
+  \item $\mathbf{T_{rp}}$ - Transformada entre a origem do rotor e a origem da
+  pá, essa transformada é fixa e foi medida no próprio modelo CAD da turbina com
+  o asuxílio do \textit{SolidWorks}.
+  \item $\mathbf{T_{cm}}$ - Transformada entre a origem do sensor da cena e a
+  origem do sensor do modelo. Essa trasnformada é a medida pelo algoritmo de
+  calibração, uma vez que a sobreposição do modelo leva em consideração um ponto
+  de vista em que a nuvem de pontos foi gerada (origem do sistema de
+  coordenadas do sensor do modelo).
+\end{itemize}
+
+As trasnformadas listadas se relacionam da seguinte maneira:
+\begin{equation}
+T_{cp} = T_{cr}*T_{rp} \sim T_{cm}*T_{mp}.
+\label{eq::tfs}
+\end{equation}
+
+
+A figura~\ref{fig::tfs} ilustra a relação entre as transformadas. O erro de
+medição da transformada pode ser calculado como a discrepância entre os dois
+termos da relação~\ref{eq::tfs} pode ser calculada da seguinte maneira:
+
+$$T_e = (T_{cr}*T_{rp})^{-1}*T_{cm}*T_{mp}$$
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{figs/calibracao/tf_error}
+	\caption{Representação dos sistemas de coordenadas de cada componente
+	envolvido na calibração.}
+    \label{fig::tf_error}
+\end{figure}	
+
+Para o teste simulado, ilustrado na figura~\ref{fig::tf_error} com os
+respectivos sistemas de coordenadas, o erro angular encontrado a partir de um
+eixo foi de aproxidamente $0.5^o$ e o erro de translação foi de $15mm$. 
+O erro angular, entretanto, gera um desalinhamento de até $42mm$ a uma distância
+de 5 metros da origem da pá. Sendo assim, existe ainda uma necessidade de ajuste
+no processo de calibração, principalmente na etapa de alinhamento final das
+nuvens de pontos.
+
+Devido às características da pá, com uma grande região sem contornos ou curvas
+acentuadas, existe a necessidade do desenvolvimento de um método de amostragem
+que favoreça as regiões com maior número de \textit{features} e durante o
+alinhamento, penalize o alinhamento entre regiões planas. Outro quesito em
+aberto é o aprimoramento na medição do erro de estimação do posicionamento da
+pá, uma vez que os erros de rotação e translação podem se somar ou se cancelar.
+
+O desenvolvimento da calibração do robô necessita da chegada dos marcadores para
+que seja inicado.
+
